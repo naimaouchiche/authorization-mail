@@ -4,11 +4,12 @@ const express = require("express");
 const router = express.Router();
 
 const { hashPassword, verifyPassword, verifyToken } = require("./auth.js");
+const { sendEmail } = require("./sendEmail.js");
 
 const userControllers = require("./controllers/userControllers");
 const movieControllers = require("./controllers/movieControllers");
 
-router.post("/api/users", hashPassword, userControllers.postUser);
+router.post("/api/users", hashPassword, userControllers.postUser, sendEmail);
 
 router.post(
   "/api/login",
